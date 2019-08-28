@@ -1,0 +1,30 @@
+// Place all the styles related to the Properties controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a.property-photo, a.property-photo:hover {
+  text-decoration: none !important;
+  background: none;
+}
+
+.feature-item, .rule-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.crossed-out img {
+  opacity: 0.5;
+}
+.crossed-out .feature-text,
+.crossed-out .rule-text  {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.inspect {
+  background: #eee;
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ddd;
+}
