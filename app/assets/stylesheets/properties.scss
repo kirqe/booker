@@ -2,29 +2,92 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-a.property-photo, a.property-photo:hover {
+.meta {
+  color: #aaa;
+}
+
+a.property_photo, a.property_photo:hover {
   text-decoration: none !important;
   background: none;
 }
 
-.feature-item, .rule-item {
+.feature_item, .rule_item {
   display: flex;
   align-items: center;
   font-size: 16px;
+  margin-bottom: 10px;
 }
 
-.crossed-out img {
+.crossed_out img {
   opacity: 0.5;
 }
-.crossed-out .feature-text,
-.crossed-out .rule-text  {
+.crossed_out .feature_text,
+.crossed_out .rule_text  {
   text-decoration: line-through;
   color: #aaa;
 }
 
 .inspect {
   background: #eee;
-padding: 10px;
-margin: 10px 0;
-border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+}
+
+.description, .notes {
+  p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+.details {
+  display: flex;
+
+  .details_item {
+    // display: flex;
+    flex-direction: column;
+    flex: 0 0 200px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    flex: 1;
+
+    .main {
+
+    }
+    .secondary {
+
+    }
+  }
+}
+
+input#property_address {
+  width: 500px;
+}
+#property_map {
+  width: 450px;
+  height: 400px;
+  filter: grayscale(0.5);
+  -ms-filter: grayscale(0.5);
+  -webkit-filter: grayscale(0.5);
+  -moz-filter: grayscale(0.5);
+  -o-filter: grayscale(0.5);
+}
+#suggest_notice {
+  display: none;
+}
+#suggest_notice.suggest_error {
+  color: red;
+  display: block;
 }

@@ -1,0 +1,31 @@
+ru:
+  helpers:
+    label:
+      property:
+        address: 'Адрес'
+        title: 'Название'
+        description: 'Описание'
+        rooms: 'Комнат'
+        total_area: 'Площадь'
+        floor_number: 'Этаж'
+        total_floors: 'Этажей в доме'
+        price: 'Цена'
+        photos: 'Фотографии'
+        notes: 'Дополнительная информация'
+
+  features:
+    label: 'Удобства'
+    tv: 'Телевизор'
+    boiler: 'Бойлер'
+    fridge: 'Холодильник'
+    dishwasher: 'Посудомойка'
+    conditioning: 'Кондиционер'
+    washer: 'Стиралка'
+    balcony: 'Балкон'
+
+  rules:
+    label: 'Особенности'
+    family: 'С детьми'
+    animals: 'Животные'
+    smoking: 'Курить'
+    events: 'Мероприятия'

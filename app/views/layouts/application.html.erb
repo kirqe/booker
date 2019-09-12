@@ -4,9 +4,14 @@
     <title>Booker</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<%= Booker::Application.credentials.ymaps_api_key %>&lang=ru_RU" type="text/javascript"></script>
+    <!-- en_US -->
+
   </head>
 
   <body>

@@ -1,48 +1,84 @@
 <p id="notice"><%= notice %></p>
-
-<h1><%= @property.title %></h1>
-
-<p>
-  <% @property.photos.each do |photo| %>
-    <%= link_to photo, target: "_blank", class: "property-photo" do %>
-      <%= image_tag photo, width: 300 %>
-    <% end %>
-
-  <% end %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @property.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @property.price %>
-</p>
-
-<p>
-  <strong>Features:</strong><br/>
+<div id="show_property">
   <div class="inspect">
     <%= @property.inspect %>
   </div>
-  <% @property.features.each do |feature, status| %>
-    <div class="feature-item <%='crossed-out' unless status %>">
-      <%= image_tag "#{feature}.png", width: 30 %>
-      <span class="feature-text"><%= feature %></span>
-    </div>
-  <% end %>
-</p>
+  <div class="meta">
+    <span><%= @property.created_at %></span>
+    <%= link_to 'Edit', edit_property_path(@property) %> |
+    <%= link_to 'Back', properties_path %>
+  </div>
 
-<p>
-  <strong>Rules:</strong><br/>
-  <% @property.rules.each do |rule, status| %>
-    <div class="rule-item <%='crossed-out' unless status %>">
-      <%= image_tag "#{rule}.png", width: 30 %>
-      <span class="rule-text"><%= rule %></span>
-    </div>
-  <% end %>
-</p>
+  <h1 id="property_title"><%= @property.title %></h1>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+  <div id="property_address" class="address">
+    <p><%= @property.address %></p>
+  </div>
+
+
+
+  <div class="container">
+    <div class="col main">
+
+
+      <p>
+        <% @property.photos.each do |photo| %>
+          <%= link_to photo, target: "_blank", class: "property_photo" do %>
+            <%= image_tag photo, width: 300 %>
+          <% end %>
+        <% end %>
+      </p>
+
+      <div class="description">
+        <p>
+          <%= @property.rooms %> - К
+          <%= @property.total_area %> м<sup><small> 2</small></sup>
+          <%= @property.floor_number %> / <%= @property.total_floors %>
+        </p>
+      </div>
+
+      <div class="description">
+        <h3><%= I18n.t 'helpers.label.property.description' %>:</h3>
+        <p><%= @property.description %></p>
+      </div>
+
+      <div class="price">
+        <h3><%= I18n.t 'helpers.label.property.price' %>:</h3>
+        <%= @property.price %>
+      </div>
+
+      <div class="details">
+        <div class="details_item fetaures">
+          <h3><%= I18n.t 'features.label' %>:</h3>
+          <% Property::FEATURES.each do |feature| %>
+            <div class="feature_item <%='crossed_out' unless @property.features[feature] %>">
+              <%= image_tag "#{feature}.png", width: 30 %>
+              <span class="feature_text"><%= I18n.t "features.#{feature}" %></span>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="details_item rules">
+          <h3><%= I18n.t 'rules.label' %>:</h3>
+          <% Property::RULES.each do |rule| %>
+            <div class="rule_item <%= 'crossed_out' unless @property.rules[rule] %>">
+              <%= image_tag "#{rule}.png", width: 30 %>
+              <span class="feature_text"><%= I18n.t "rules.#{rule}" %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h3><%= I18n.t 'helpers.label.property.notes' %>:</h3>
+        <%= @property.notes %>
+      </div>
+    </div>
+
+    <div class="col secondary">
+      <%= tag :div, id: "map_coords", data: {coords: [@property.latitude, @property.longitude]} %>
+      <div id="property_map" style="width: 450px; height: 400px"></div>
+    </div>
+  </div>
+
+</div>

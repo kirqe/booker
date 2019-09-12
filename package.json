@@ -1,5 +1,11 @@
 {
   "name": "booker",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "^4.0.7",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.0"
+  }
 }

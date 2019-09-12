@@ -19,16 +19,13 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1/edit
   def edit
-    p "---------------"
-    p @property.inspect
   end
 
   # POST /properties
   # POST /properties.json
   def create
     @property = Property.new(property_params)
-    p "---------------"
-    p @property.inspect
+
     respond_to do |format|
       if @property.save
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
@@ -70,9 +67,15 @@ class PropertiesController < ApplicationController
       @property = Property.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:title, :description, :price,
+      params.require(:property).permit(
+        :title, :description, :price,
+        :address, :latitude, :longitude,
+        :rooms, :total_area, :floor_number, :total_floors,
+        :email, :phone,
+        :notes,
         photos: [],
         features: Property::FEATURES,
         rules: Property::RULES)

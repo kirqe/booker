@@ -9,5 +9,7 @@ class CreateProperties < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index  :properties, :features, using: :gin
+    add_index  :properties, :rules, using: :gin
   end
 end

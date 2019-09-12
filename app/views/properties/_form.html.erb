@@ -12,6 +12,21 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+    <span id="suggest_notice">Адрес не найден</span>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :latitude %>
+    <%= form.hidden_field :longitude %>
+  </div>
+
+  <div class="field">
+    <div id="property_map" style="width: 450px; height: 400px"></div>
+  </div>
+
+  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
@@ -22,39 +37,53 @@
   </div>
 
   <div class="field">
+    <%= form.label :rooms %>
+    <%= form.text_field :rooms %>
+    <%= form.label :total_area %>
+    <%= form.text_field :total_area %> м2
+    <%= form.label :floor_number %>
+    <%= form.text_field :floor_number %> /
+    <%= form.label :total_floors %>
+    <%= form.text_field :total_floors %>
+  </div>
+
+  <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price %>
   </div>
 
   <div class="field">
     <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true, disabled: true %>
+    <%= form.file_field :photos, multiple: true %>
   </div>
 
   <div class="field">
-    <strong>Features:</strong>
+    <strong><%= I18n.t "features.label" %></strong>
     <%= form.fields_for :features do |ff| %>
-      <% property.features.each do |feature, status| %>
+      <% Property::FEATURES.each do |feature| %>
         <%= ff.label feature do %>
-          <% s = status === "true" ? true : false %>
-          <%= ff.check_box feature, {checked: s}, true, false %>
-          <%= feature %>
+          <%= ff.check_box feature, {checked: property.features[feature]}, true, false %>
+          <%= I18n.t "features.#{feature}" %>
         <% end %>
       <% end %>
     <% end %>
   </div>
 
   <div class="field">
-    <strong>Rules:</strong>
+    <strong><%= I18n.t "rules.label" %></strong>
     <%= form.fields_for :rules do |ff| %>
-      <% property.rules.each do |rule, status| %>
-
+      <% Property::RULES.each do |rule| %>
         <%= ff.label rule do %>
-          <%= ff.check_box rule, {checked: status == "true" ? true : false}, true, false %>
-          <%= rule %>
+          <%= ff.check_box rule, {checked: property.rules[rule] }, true, false %>
+          <%= I18n.t "rules.#{rule}" %>
         <% end %>
       <% end %>
     <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
   </div>
 
   <div class="actions">
